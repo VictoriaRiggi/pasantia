@@ -73,8 +73,12 @@ def get_text(result, blocks_map):
 
 def print_kvs(kvs):
     for key, value in kvs.items():
-        print(key, ":", value)
-
+        if key == u'Fecha: ':
+            print 'FECHA: ' , value
+        if key == u'Fecha ':
+            print "FECHA: " , value
+        if key == u'TOTAL ':
+            print "TOTAL: " , value
 
 def search_value(kvs, search_key):
     for key, value in kvs.items():
@@ -87,13 +91,10 @@ def main(file_name):
 
     # Get Key Value relationship
     kvs = get_kv_relationship(key_map, value_map, block_map)
-    print("\n\n== FOUND KEY : VALUE pairs ===\n")
+    print("\n")
     print_kvs(kvs)
+    print("\n")
 
-    # Start searching a key value
-'''    while input('\n Do you want to search a value for a key? (enter "n" for exit) ') != 'n':
-        search_key = input('\n Enter a search key:')
-        print('The value is:', search_value(kvs, search_key))
-'''
+
 if __name__ == "__main__":
     main(file_name)
